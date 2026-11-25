@@ -10,14 +10,14 @@ Prédiction automatique de la discipline médicale d'un preprint **medRxiv** (16
 
 ## Approches testées
 
-### 1. Machine Learning classique (`01_ml_classique.py`)
+### 1. Machine Learning classique (`ML_classique.py`)
 * **Validation** : validation croisée stratifiée à 5 plis (`Pipeline` complet pour éviter toute fuite de données).
 * **Prétraitement** : tokenisation, minuscules, suppression des mots vides et lemmatisation (`spaCy`).
 * **Vectorisation** : TF-IDF avec n-grammes de mots (1-2).
 * **Déséquilibre** : pondération des classes (`class_weight="balanced"`).
 * **Modèles** : SVM linéaire, Régression logistique, Naive Bayes, Random Forest, Gradient Boosting et Super-learner (stacking SVM + Naive Bayes).
 
-### 2. Deep Learning avec PubMedBERT (`02_pubmedbert.py`)
+### 2. Deep Learning avec PubMedBERT (`PubmedBert.py`)
 * **Modèle** : `microsoft/BiomedNLP-BiomedBERT-base-uncased-abstract`.
 * **Troncature intelligente** : limitation à 256 tokens (64 premiers tokens pour le contexte + 190 derniers pour les résultats/conclusion).
 * **Fine-tuning** : 3 époques, optimiseur AdamW ($lr = 2 \times 10^{-5}$) avec fonction de perte pondérée.
